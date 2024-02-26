@@ -56,24 +56,24 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        if (horizontalInput == 0 && verticalInput == 0)
-        {
-            animator.SetBool(idle, true);
-            animator.SetBool(Idle, true);
-            anim.SetBool(Run, false);
-            anim.SetBool(BadgerPawAttack, false);
-            anim.SetBool(BalloonFishDive, false);
-            anim.SetBool(BalloonFishFloat, false);
-        }
-        if (Input.GetKey(KeyCode.LeftAlt))
-        {
-            anim.SetBool(Walk, false);
-            anim.SetBool(Idle, true);
-            anim.SetBool(Run, false);
-            anim.SetBool(BadgerPawAttack, false);
-            anim.SetBool(BalloonFishDive, false);
-            anim.SetBool(BalloonFishFloat, false);
-        }
+        //if (horizontalInput == 0 && verticalInput == 0)
+        //{
+        //    animator.SetBool(idle, true);
+        //    animator.SetBool(jump, false);
+        //    animator.SetBool(Run, false);
+        //    animator.SetBool(BadgerPawAttack, false);
+        //    animator.SetBool(BalloonFishDive, false);
+        //    animator.SetBool(BalloonFishFloat, false);
+        //}
+        //if (Input.GetKey(KeyCode.LeftAlt))
+        //{
+        //    anim.SetBool(Walk, false);
+        //    anim.SetBool(Idle, true);
+        //    anim.SetBool(Run, false);
+        //    anim.SetBool(BadgerPawAttack, false);
+        //    anim.SetBool(BalloonFishDive, false);
+        //    anim.SetBool(BalloonFishFloat, false);
+        //}
 
         rigibody.AddRelativeForce(Vector3.forward * verticalInput * (Input.GetKey(KeyCode.LeftAlt) ? runSpeed : moveSpeed));
 
