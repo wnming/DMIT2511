@@ -4,5 +4,23 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 712c6774e7dacbf4d84005b22eb7a238
+  - enabled: 1
+    path: Assets/Scenes/GameHUB.unity
+    guid: 1b9af68ef7236cf43ae5eb707c8cce31
+  - enabled: 1
+    path: Assets/Scenes/MainLevel.unity
+    guid: 04ad23268e5c6a449a7b19b3a732367a
+  - enabled: 1
+    path: Assets/Scenes/Where'sMyMom.unity
+    guid: a61066eb63bb79a42a5734dc4423bb3d
+  - enabled: 1
+    path: Assets/Scenes/SaveThePenguins.unity
+    guid: 395baa7843dde4a41886cccc7f415a28
+  - enabled: 1
+    path: Assets/Scenes/FeedThePolarBear.unity
+    guid: 48407ff95ea7e51418b0e1da0c9baeeb
   m_configObjects: {}
