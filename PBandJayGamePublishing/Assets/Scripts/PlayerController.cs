@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         moveSpeed = 30.0f;
-        runSpeed = 45.0f;
+        runSpeed = 60.0f;
         rotationSpeed = 80.0f;
         jumpSpeed = 15.0f;
 
@@ -44,38 +44,64 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && !isJumping)
-        {
-            GetComponent<Rigidbody>().velocity = new Vector3(0, jumpSpeed, 0);
-            isJumping = true;
-        }
-    }
-
-    void FixedUpdate()
-    {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        //if (horizontalInput == 0 && verticalInput == 0)
-        //{
-        //    animator.SetBool(idle, true);
-        //    animator.SetBool(jump, false);
-        //    animator.SetBool(Run, false);
-        //    animator.SetBool(BadgerPawAttack, false);
-        //    animator.SetBool(BalloonFishDive, false);
-        //    animator.SetBool(BalloonFishFloat, false);
-        //}
-        //if (Input.GetKey(KeyCode.LeftAlt))
-        //{
-        //    anim.SetBool(Walk, false);
-        //    anim.SetBool(Idle, true);
-        //    anim.SetBool(Run, false);
-        //    anim.SetBool(BadgerPawAttack, false);
-        //    anim.SetBool(BalloonFishDive, false);
-        //    anim.SetBool(BalloonFishFloat, false);
-        //}
+        if (horizontalInput == 0 && verticalInput == 0 && rigibody.velocity.y == 0)
+        {
+            animator.SetBool(idle, true);
+            animator.SetBool(jump, false);
+            animator.SetBool(walk, false);
+            animator.SetBool(run, false);
+            animator.SetBool(work, false);
+            animator.SetBool(attack, false);
+            animator.SetBool(victory, false);
+        }
+        else
+        {
+            if (isJumping)
+            {
+                animator.SetBool(idle, false);
+                animator.SetBool(jump, true);
+                animator.SetBool(walk, false);
+                animator.SetBool(run, false);
+                animator.SetBool(work, false);
+                animator.SetBool(attack, false);
+                animator.SetBool(victory, false);
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    animator.SetBool(idle, false);
+                    animator.SetBool(jump, false);
+                    animator.SetBool(walk, false);
+                    animator.SetBool(run, true);
+                    animator.SetBool(work, false);
+                    animator.SetBool(attack, false);
+                    animator.SetBool(victory, false);
+                }
+                else
+                {
+                    Debug.Log("walk");
+                    animator.SetBool(idle, false);
+                    animator.SetBool(jump, false);
+                    animator.SetBool(walk, true);
+                    animator.SetBool(run, false);
+                    animator.SetBool(work, false);
+                    animator.SetBool(attack, false);
+                    animator.SetBool(victory, false);
+                }
+            }
+        }
 
-        rigibody.AddRelativeForce(Vector3.forward * verticalInput * (Input.GetKey(KeyCode.LeftAlt) ? runSpeed : moveSpeed));
+        if (Input.GetKey(KeyCode.Space) && !isJumping)
+        {
+            rigibody.velocity = new Vector3(0, jumpSpeed, 0);
+            isJumping = true;
+        }
+
+        rigibody.AddRelativeForce(Vector3.forward * verticalInput * (Input.GetKey(KeyCode.LeftShift) ? runSpeed : moveSpeed));
 
         transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
     }
