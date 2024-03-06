@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     float rotationSpeed;
     public bool isJumping = false;
 
+    public bool isRun = false;
+
     Rigidbody rigibody;
 
     void Start()
@@ -44,8 +46,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        //horizontalInput = Input.GetAxis("Horizontal");
+        //verticalInput = Input.GetAxis("Vertical");
 
         if (horizontalInput == 0 && verticalInput == 0 && rigibody.velocity.y == 0)
         {
@@ -83,7 +85,6 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("walk");
                     animator.SetBool(idle, false);
                     animator.SetBool(jump, false);
                     animator.SetBool(walk, true);
@@ -95,15 +96,15 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Space) && !isJumping)
-        {
-            rigibody.velocity = new Vector3(0, jumpSpeed, 0);
-            isJumping = true;
-        }
-
-        rigibody.AddRelativeForce(Vector3.forward * verticalInput * (Input.GetKey(KeyCode.LeftShift) ? runSpeed : moveSpeed));
+        rigibody.AddRelativeForce(Vector3.forward * verticalInput * (isRun ? runSpeed : moveSpeed));
 
         transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
+    }
+
+    public void Jump()
+    {
+        rigibody.velocity = new Vector3(0, jumpSpeed, 0);
+        isJumping = true;
     }
 
     private void OnCollisionEnter(Collision collision)

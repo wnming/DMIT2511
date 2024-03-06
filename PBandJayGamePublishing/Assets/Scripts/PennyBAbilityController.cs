@@ -12,9 +12,12 @@ public class PennyBAbilityController : MonoBehaviour
     float growingElapsedTime = 0;
     float growingDelay = 0.5f;
 
+    PlayerController playerController;
+
     private void Start()
     {
         isGrown = false;
+        playerController = GetComponent<PlayerController>();
     }
 
     public void ApplySizing(float rate)
@@ -37,12 +40,33 @@ public class PennyBAbilityController : MonoBehaviour
     void Update()
     {
         growingElapsedTime += Time.deltaTime;
-        //might need to change to the different key later since Jay is already used R
         if (Input.GetKey(KeyCode.R) && growingElapsedTime > growingDelay)
         {
             growingElapsedTime = 0;
             isGrown = !isGrown;
             ChangePlayerSize();
+        }
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                playerController.isRun = true;
+            }
+            else
+            {
+                playerController.isRun = false;
+            }
+            playerController.horizontalInput = Input.GetAxis("Horizontal");
+            playerController.verticalInput = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            playerController.horizontalInput = 0;
+            playerController.verticalInput = 0;
+        }
+        if (Input.GetKey(KeyCode.Space) && !playerController.isJumping)
+        {
+            playerController.Jump();
         }
     }
 }
