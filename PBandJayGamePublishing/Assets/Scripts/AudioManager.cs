@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class AudioManager : MonoBehaviour
     //public Sounds[] sfx;
     public AudioSource musicSource;
     //public AudioSource sfxSource;
+
+    bool isMuted = false;
+    public GameObject muteImage;
+    public GameObject musicImage;
+    public Slider musicSlider;
+    public GameObject optionsMenu;
 
     private void Awake()
     {
@@ -27,6 +34,10 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         PlayMusic("Background Music");
+        muteImage.SetActive(false);
+        musicImage.SetActive(true);
+        musicSlider.value = 1;
+        optionsMenu.SetActive(false);
     }
     public void PlayMusic(string name)
     {
@@ -34,5 +45,41 @@ public class AudioManager : MonoBehaviour
 
         musicSource.clip = sound.clip;
         musicSource.Play();
+    }
+    public void Mute()
+    {
+        //musicSource.mute = !musicSource.mute;
+        isMuted = !isMuted;
+
+        if (isMuted)
+        {
+            musicSource.volume = 0f;
+            muteImage.SetActive(true);
+            musicImage.SetActive(false);
+            musicSlider.interactable = false;
+        }
+        else
+        {
+            musicSource.volume = 1f;
+            muteImage.SetActive(false);
+            musicImage.SetActive(true);
+            musicSlider.interactable = true;
+        }
+    }
+    public void VolumeController(float volume)
+    {
+        musicSource.volume = volume;
+    }
+    public void MusicVolume()
+    {
+        instance.VolumeController(musicSlider.value);
+    }
+    public void ToggleOptionsMenu()
+    {
+        optionsMenu.SetActive(!optionsMenu.activeSelf);
+    }
+    public void BackToMenu()
+    {
+        ToggleOptionsMenu();
     }
 }
