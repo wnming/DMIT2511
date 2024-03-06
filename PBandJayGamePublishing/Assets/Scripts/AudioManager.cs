@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource;
     //public AudioSource sfxSource;
 
-    bool isMuted = false;
+    public bool isMuted = false;
     public GameObject muteImage;
     public GameObject musicImage;
     public Slider musicSlider;

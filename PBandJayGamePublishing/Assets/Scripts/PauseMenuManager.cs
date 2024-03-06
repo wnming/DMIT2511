@@ -7,12 +7,13 @@ using UnityEngine.UI;
 public class PauseMenuManager : MonoBehaviour
 {
     public static bool gamePaused = false;
-    public GameObject pauseMenuUI;
+    public GameSceneManager pauseUI;
     public GameObject optionsMenuUI;
 
     private void Start()
     {
-        pauseMenuUI.SetActive(false);
+        pauseUI.gameObject.SetActive(false);
+        //pauseMenuUI.SetActive(false);
         optionsMenuUI.SetActive(false);
     }
     void Update()
@@ -31,15 +32,17 @@ public class PauseMenuManager : MonoBehaviour
     }
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
+        pauseUI.gameObject.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
+        optionsMenuUI.SetActive(false);
     }
     void Pause()
     {
-        pauseMenuUI.SetActive(true);
+        pauseUI.gameObject.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
+        optionsMenuUI.SetActive(false);
     }
     public void LoadMenu()
     {
@@ -52,12 +55,12 @@ public class PauseMenuManager : MonoBehaviour
     }
     public void OptionsMenu()
     {
-        pauseMenuUI.SetActive(false);
+        pauseUI.gameObject.SetActive(false);
         optionsMenuUI.SetActive(true);
     }
     public void LoadPauseMenu()
     {
-        pauseMenuUI.SetActive(true);
+        pauseUI.gameObject.SetActive(true);
         optionsMenuUI.SetActive(false);
     }
 }
