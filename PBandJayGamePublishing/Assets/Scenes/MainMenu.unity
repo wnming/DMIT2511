@@ -1739,7 +1739,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1304976654}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: BackToMenu
+        m_MethodName: ToggleOptionsMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2554,6 +2554,7 @@ MonoBehaviour:
   - name: Background Music
     clip: {fileID: 8300000, guid: 0b95423947795ce40abfc69d5637aa63, type: 3}
   musicSource: {fileID: 2078980656}
+  isMuted: 0
   muteImage: {fileID: 1713660568}
   musicImage: {fileID: 199925930}
   musicSlider: {fileID: 2137286669}

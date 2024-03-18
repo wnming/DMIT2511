@@ -6,10 +6,23 @@ using UnityEngine.UI;
 
 public class PauseMenuManager : MonoBehaviour
 {
+    public static PauseMenuManager instance;
     public static bool gamePaused = false;
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Start()
     {
         pauseMenuUI.SetActive(false);
