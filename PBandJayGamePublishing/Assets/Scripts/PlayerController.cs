@@ -18,13 +18,13 @@ public class PlayerController : MonoBehaviour
 
     float moveSpeed;
     float runSpeed;
-    float jumpSpeed;
+    public float jumpSpeed;
     float rotationSpeed;
-    public bool isJumping = false;
+    public bool isJumping;
 
     public bool isRun = false;
 
-    Rigidbody rigibody;
+    public Rigidbody rigibody;
 
     void Start()
     {
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
         runSpeed = 60.0f;
         rotationSpeed = 80.0f;
         jumpSpeed = 15.0f;
+        isJumping = false;
 
         rigibody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
@@ -103,14 +104,17 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        rigibody.velocity = new Vector3(0, jumpSpeed, 0);
         isJumping = true;
+        rigibody.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+        //transform.position += new Vector3(0, 1, 0) * jumpSpeed;
+        //rigibody.velocity = new Vector3(0, jumpSpeed, 0);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Floor"))
+        if (other.GetComponent<Terrain>() is not null)
         {
+            Debug.Log("ggg");
             isJumping = false;
         }
     }

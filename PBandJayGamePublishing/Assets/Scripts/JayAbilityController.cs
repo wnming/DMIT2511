@@ -66,7 +66,9 @@ public class JayAbilityController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Return) && !playerController.isJumping)
         {
-            playerController.Jump();
+            playerController.isJumping = true;
+            playerController.rigibody.AddForce(Vector3.up * playerController.jumpSpeed, ForceMode.Impulse);
+            //playerController.Jump();
         }
     }
 }
