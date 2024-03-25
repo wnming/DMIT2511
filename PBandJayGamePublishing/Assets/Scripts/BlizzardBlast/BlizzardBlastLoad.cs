@@ -18,6 +18,6 @@ public class BlizzardBlastLoad : MonoBehaviour
     void Start()
     {
         jay = GameObject.FindGameObjectWithTag("Jay");
-        jay.transform.position = transform.position;
+        jay.transform.localPosition = transform.position;
     }
 }

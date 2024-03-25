@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4684403152539725594, guid: c564c8c0d0cdc45429417f315e9f3e41, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4684403152539725594, guid: c564c8c0d0cdc45429417f315e9f3e41, type: 3}
       propertyPath: m_LocalPosition.z
@@ -197,19 +197,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5352958571798197664, guid: c564c8c0d0cdc45429417f315e9f3e41, type: 3}
   m_PrefabInstance: {fileID: 79466455}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &79466457
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 79466456}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8327265, y: 1.4749795, z: 0.8330651}
-  m_Center: {x: -0.017107725, y: 0.73008734, z: -0.022604197}
 --- !u!114 &79466458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,8 +211,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalInput: 0
   verticalInput: 0
+  jumpSpeed: 0
   isJumping: 0
   isRun: 0
+  rigibody: {fileID: 0}
 --- !u!4 &79466459 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4684403152539725594, guid: c564c8c0d0cdc45429417f315e9f3e41, type: 3}
@@ -239,14 +228,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79466456}
   serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 3
+  m_Mass: 2
+  m_Drag: 1.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!114 &79466464
 MonoBehaviour:
   m_ObjectHideFlags: 0

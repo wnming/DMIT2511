@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
     float rotationSpeed;
     public bool isJumping;
+    public bool jumped;
 
     public bool isRun = false;
 
@@ -31,8 +32,9 @@ public class PlayerController : MonoBehaviour
         moveSpeed = 30.0f;
         runSpeed = 60.0f;
         rotationSpeed = 80.0f;
-        jumpSpeed = 15.0f;
+        jumpSpeed = 500.0f;        
         isJumping = false;
+        jumped = false;
 
         rigibody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
@@ -47,11 +49,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //horizontalInput = Input.GetAxis("Horizontal");
-        //verticalInput = Input.GetAxis("Vertical");
-
-        if (horizontalInput == 0 && verticalInput == 0 && rigibody.velocity.y == 0)
+        if (horizontalInput == 0 && verticalInput == 0 && !isJumping)
         {
+            Debug.Log("horizontalInput == 0 && verticalInput == 0 && !isJumping");
             animator.SetBool(idle, true);
             animator.SetBool(jump, false);
             animator.SetBool(walk, false);
@@ -64,13 +64,18 @@ public class PlayerController : MonoBehaviour
         {
             if (isJumping)
             {
-                animator.SetBool(idle, false);
-                animator.SetBool(jump, true);
-                animator.SetBool(walk, false);
-                animator.SetBool(run, false);
-                animator.SetBool(work, false);
-                animator.SetBool(attack, false);
-                animator.SetBool(victory, false);
+                if (!jumped)
+                {
+                    Debug.Log("(!jumped)");
+                    jumped = true;
+                    animator.SetBool(idle, false);
+                    animator.SetBool(jump, true);
+                    animator.SetBool(walk, false);
+                    animator.SetBool(run, false);
+                    animator.SetBool(work, false);
+                    animator.SetBool(attack, false);
+                    animator.SetBool(victory, false);
+                }
             }
             else
             {
@@ -86,6 +91,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("else walk");
                     animator.SetBool(idle, false);
                     animator.SetBool(jump, false);
                     animator.SetBool(walk, true);
@@ -96,26 +102,31 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
         rigibody.AddRelativeForce(Vector3.forward * verticalInput * (isRun ? runSpeed : moveSpeed));
-
         transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
     }
 
     public void Jump()
     {
         isJumping = true;
-        rigibody.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-        //transform.position += new Vector3(0, 1, 0) * jumpSpeed;
-        //rigibody.velocity = new Vector3(0, jumpSpeed, 0);
+        rigibody.velocity = new Vector3(0, 15.0f, 0);
     }
 
-    public void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.GetComponent<Terrain>() is not null)
+        if (collision.gameObject.CompareTag("Floor") && rigibody.velocity.y <= 0)
         {
-            Debug.Log("ggg");
             isJumping = false;
+            jumped = false;
         }
     }
+
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.GetComponent<Terrain>() is not null)
+    //    {
+    //        Debug.Log("ggg");
+    //        isJumping = false;
+    //    }
+    //}
 }
