@@ -66,7 +66,7 @@ public class PennyBAbilityController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space) && !playerController.isJumping)
         {
-            playerController.isJumping = true;
+            playerController.Jump();
         }
     }
 }

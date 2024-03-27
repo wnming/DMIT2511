@@ -213,6 +213,7 @@ MonoBehaviour:
   verticalInput: 0
   jumpSpeed: 0
   isJumping: 0
+  jumped: 0
   isRun: 0
   rigibody: {fileID: 0}
 --- !u!4 &79466459 stripped
@@ -387,9 +388,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.5
     y: 0
-    width: 1
+    width: 0.5
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
