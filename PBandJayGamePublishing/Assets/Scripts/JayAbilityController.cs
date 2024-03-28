@@ -40,7 +40,7 @@ public class JayAbilityController : MonoBehaviour
     void Update()
     {
         shrinkingElapsedTime += Time.deltaTime;
-        if (Input.GetKey(KeyCode.L) && shrinkingElapsedTime > shrinkingDelay)
+        if (Input.GetKey(KeyCode.L) && shrinkingElapsedTime > shrinkingDelay && DataManager.currentScene == DataManager.SceneName.WheresMymom)
         {
             shrinkingElapsedTime = 0;
             isShrinked = !isShrinked;

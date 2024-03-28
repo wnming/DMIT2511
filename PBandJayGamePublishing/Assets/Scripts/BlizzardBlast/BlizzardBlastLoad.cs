@@ -23,6 +23,7 @@ public class BlizzardBlastLoad : MonoBehaviour
 
     void Start()
     {
+        DataManager.currentScene = DataManager.SceneName.BlizzardBlast;
         DataManager.isInMainArea = true;
         jay = GameObject.FindGameObjectWithTag("Jay");
         jay.transform.localPosition = transform.position + offSet;

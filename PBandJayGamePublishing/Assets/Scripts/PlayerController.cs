@@ -52,7 +52,6 @@ public class PlayerController : MonoBehaviour
     {
         if (horizontalInput == 0 && verticalInput == 0 && !isJumping)
         {
-            Debug.Log("horizontalInput == 0 && verticalInput == 0 && !isJumping");
             animator.SetBool(idle, true);
             animator.SetBool(jump, false);
             animator.SetBool(walk, false);
@@ -67,7 +66,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (!jumped)
                 {
-                    Debug.Log("(!jumped)");
                     jumped = true;
                     animator.SetBool(idle, false);
                     animator.SetBool(jump, true);
@@ -125,14 +123,19 @@ public class PlayerController : MonoBehaviour
             SceneManager.UnloadSceneAsync("BlizzardBlast");
             SceneManager.LoadScene("GameHUB");
         }
+        if (collision.gameObject.tag == "WheresMyMom")
+        {
+            SceneManager.UnloadSceneAsync("BlizzardBlast");
+            SceneManager.LoadScene("Where'sMyMom");
+        }
     }
 
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.GetComponent<Terrain>() is not null)
-    //    {
-    //        Debug.Log("ggg");
-    //        isJumping = false;
-    //    }
-    //}
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "WheresMyMom")
+        {
+            SceneManager.UnloadSceneAsync("Where'sMyMom");
+            SceneManager.LoadScene("BlizzardBlast");
+        }
+    }
 }

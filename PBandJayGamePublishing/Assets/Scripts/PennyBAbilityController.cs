@@ -5,7 +5,7 @@ using UnityEngine;
 public class PennyBAbilityController : MonoBehaviour
 {
     private float minScale = 1.0f;
-    private float maxScale = 1.6f;
+    private float maxScale = 5.0f;
 
     bool isGrown;
 
@@ -40,7 +40,7 @@ public class PennyBAbilityController : MonoBehaviour
     void Update()
     {
         growingElapsedTime += Time.deltaTime;
-        if (Input.GetKey(KeyCode.R) && growingElapsedTime > growingDelay)
+        if (Input.GetKey(KeyCode.R) && growingElapsedTime > growingDelay && DataManager.currentScene == DataManager.SceneName.WheresMymom)
         {
             growingElapsedTime = 0;
             isGrown = !isGrown;
@@ -64,7 +64,7 @@ public class PennyBAbilityController : MonoBehaviour
             playerController.horizontalInput = 0;
             playerController.verticalInput = 0;
         }
-        if (Input.GetKey(KeyCode.Space) && !playerController.isJumping)
+        if (Input.GetKey(KeyCode.Space) && !playerController.isJumping && !isGrown)
         {
             playerController.Jump();
         }

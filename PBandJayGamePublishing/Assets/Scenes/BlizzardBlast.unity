@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.63529414, g: 0.6509804, b: 0.6784314, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: b7c00be18a6e7a2428b01c61aea8c5b6, type: 2}
   m_HaloStrength: 0.5
@@ -94090,6 +94090,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WheresMyMom
       objectReference: {fileID: 0}
+    - target: {fileID: 1085394057516645950, guid: 99ca8edace096cc4993c7b454007f6dd, type: 3}
+      propertyPath: m_TagString
+      value: WheresMyMom
+      objectReference: {fileID: 0}
     - target: {fileID: 4138406205283454707, guid: 99ca8edace096cc4993c7b454007f6dd, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -94152,5 +94156,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 106.23874, y: 4, z: 88.827545}
-  m_Center: {x: 31.958939, y: 0, z: -44.33571}
+  m_Size: {x: 112.300476, y: 4, z: 88.827545}
+  m_Center: {x: 28.92807, y: 0, z: -44.33571}
